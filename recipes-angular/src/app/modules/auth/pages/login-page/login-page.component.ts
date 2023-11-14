@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent {
+  toggleForm: boolean = true;
 
+  constructor() { }
+
+  registerView(): void {
+    this.toggleForm = false;
+  }
 }

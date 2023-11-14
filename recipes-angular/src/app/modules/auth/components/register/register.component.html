@@ -1,14 +1,12 @@
-<div *ngIf="toggleForm" class="login-page">
+<div class="login-page">
     <div class="form-container">
         <img class="login-img" src="../../../../../assets/recipe-book.png" alt="">
-        <h5 class="form-title">Inicio de sesión</h5>
+        <h5 class="form-title">Crea tu cuenta</h5>
         <form class="form" action="">
             <input placeholder="Email" type="email">
             <input placeholder="Password" type="password">
-            <button type="submit">Ingresar</button>
-            <span (click)="registerView()">Registrarme</span>
+            <button type="submit">Registrarme</button>
+            <!-- <span>Ya tengo cuenta</span> -->
         </form>
     </div>
 </div>
-
-<app-register *ngIf="!toggleForm"></app-register>
