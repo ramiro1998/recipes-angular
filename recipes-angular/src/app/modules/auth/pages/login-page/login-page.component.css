@@ -10,7 +10,63 @@
 
 .form-container {
     width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-height: 50vh;
     background-color: white;
     border-radius: 10px;
+}
+
+.login-img {
+    width: 200px;
+    margin-top: 0.2rem;
+}
+
+.form-title {
+    color: var(--color-3);
+    margin: 1.5rem 0;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    width: 250px;
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    text-indent: 4px;
+}
+
+button {
+    width: 250px;
+    margin: 10px 0;
+    padding: 5px;
+    background-color: var(--color-1);
+    border: none;
+    color: var(--color-3);
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+span {
+    font-size:14px;
+    color: var(--color-3);
+    margin: 3rem 0;
+}
+
+span:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
