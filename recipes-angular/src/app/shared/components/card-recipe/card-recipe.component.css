@@ -15,17 +15,9 @@
 .card-title {
     font-family: var(--font-family-1);
     font-weight: bold;
-    color: var(--color-2);
 }
 
 .card-text {
     font-family: var(--font-family-1);
     color: black;
-}
-
-.btn-primary {
-    background-color: #4c9d31;
-    border: none;
-    font-family: var(--font-family-1);
-    font-weight: bold;
 }

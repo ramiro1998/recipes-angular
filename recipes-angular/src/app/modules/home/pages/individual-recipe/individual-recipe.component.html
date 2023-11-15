@@ -1,26 +1,31 @@
-<div class="recipe-individual">
-    <!-- <img [src]="recipe.imagen" alt="{{ recipe.nombre }}">
-    <h1>{{ recipe.name }}</h1>
-    <img src="" alt="">
-    <p>{{ recipe.description }}</p> -->
-    <form (submit)="submitForm()" [formGroup]="formRecipe">
+<div class="recipe-individual" *ngIf="recipe.name != ''">
+    <form (submit)="submitForm()" [formGroup]="formRecipe" class="form-container">
         <div class="form-group">
-            <!-- <label for="name">Nombre:</label> -->
-            <input type="text" class="form-control" id="name" name="name" formControlName="name">
+            <input type="text" class="form-control" id="name" name="name" formControlName="name" maxlength="45">
         </div>
-        <!-- <img [src]="recipe.imagen" alt="{{ recipe.nombre }}"> -->
         <img [src]="recipe.imagePath" alt="{{ recipe.name }}">
         <div class="form-group">
-            <label for="description">Descripción:</label>
+            <label for="description" class="text-name">Descripción:</label>
             <textarea class="form-control" id="description" name="description" formControlName="description"></textarea>
         </div>
         <div class="form-group">
-            <label for="imagePath">URL de la imagen:</label>
-            <input type="text" class="form-control" id="imagePath" name="imagePath" formControlName="url">
+            <label for="imagePath" class="text-name">URL imagen:</label>
+            <input type="text" class="form-control" id="imagePath" name="imagePath" formControlName="imagePath">
+        </div>
+        <div formArrayName="ingredients">
+            <label for="ingredients" class="text-name">Ingredientes:</label>
+            <div *ngFor="let ingredient of getForm().controls; let i = index" [formGroupName]="i" class="container-ingredient">
+                <input type="text" class="input-ingredient" formControlName="name" placeholder="Nombre">
+                <input type="text" class="input-ingredient" formControlName="amount" placeholder="Cantidad">
+                <a *ngIf="ingredient.get('name')?.value && ingredient.get('amount')?.value">
+                    <i class="fas fa-trash" style="color: #e0190b; margin-left: 5px;"></i>
+                </a>
+            </div>
+            <a (click)="addIngredient()">add</a>
         </div>
     </form>
     <div class="botones">
-        <a class="btn btn-primary" role="button" (click)="editRecipe(recipe)">Editar</a>
-        <a class="btn btn-danger" role="button" (click)="deleteRecipe(recipe)">Eliminar</a>
+        <a class="btn btn-primary button-dimension" role="button" (click)="editRecipe(recipe)">Editar</a>
+        <a class="btn btn-danger-custom button-dimension" role="button" (click)="deleteRecipe(recipe)">Eliminar</a>
     </div>
 </div>

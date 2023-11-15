@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
+    gap: 20px;
 }
 
 .recipe-individual img {
@@ -29,8 +30,38 @@
     text-align: center;
 }
 
+.form-container {
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.text-name {
+    color: var(--color-3);
+    font-weight: bold;
+}
+
+#description {
+    min-height: 105px;
+}
+
+.container-ingredient {
+    display: flex;
+    align-items: center;
+}
+
+.input-ingredient {
+    text-align: center;
+}
+
 .botones {
     display: flex;
     justify-content: center;
     gap: 10px;
+}
+
+.button-dimension {
+    width: 100px;
 }

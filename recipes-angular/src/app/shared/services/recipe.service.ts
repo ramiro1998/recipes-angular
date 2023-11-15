@@ -15,7 +15,7 @@ export class RecipeService {
 
 
   getAllRecips(): Observable<Recipe[]> {
-    return this.http.get(`${this.URL}/api/recipes/get?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDk1YjBhMjYyZjNjZDFhYTgxYTE4ODkiLCJpYXQiOjE2OTk5OTQ0ODIsImV4cCI6MTcwMDAwODg4Mn0.sFzw4SAOeU6vf8d246QiP901srs0iT5SqfhRzt4IYCA`)
+    return this.http.get(`${this.URL}/api/recipes/get?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NTU0ZGE1YWY3NmJjZjcyYWUxZTNmMjEiLCJpYXQiOjE3MDAwNzQyMDgsImV4cCI6MTcwMDA4ODYwOH0.ZIZIaqO3uL4LIXg6c0w42zsITJ2VS9_vQF6tvH_hqlY`)
       .pipe(
         map((recipes: any) => {
           console.log('recipes service', recipes)

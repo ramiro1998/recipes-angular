@@ -9,6 +9,38 @@
     --box-shadow-1: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-body{
+body {
     background-color: var(--color-2);
+}
+
+.btn-primary {
+    background-color: #4c9d31;
+    border: none;
+    font-family: var(--font-family-1);
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #4c9d31;
+}
+
+.btn-primary:active {
+    background-color: #4c9d31 !important;
+}
+
+.btn-danger-custom {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    font-family: var(--font-family-1);
+}
+
+.btn-danger-custom:hover {
+    background-color: red;
+    color: white;
+}
+
+.btn-danger-custom:active {
+    background-color: red !important;
+    color: white !important;
 }
