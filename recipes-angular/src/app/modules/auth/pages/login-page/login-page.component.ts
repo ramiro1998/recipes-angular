@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -6,11 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent {
-  toggleForm: boolean = true;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  registerView(): void {
-    this.toggleForm = false;
+  goRegister(): void {
+    this.router.navigate(['/auth/register']);
   }
 }

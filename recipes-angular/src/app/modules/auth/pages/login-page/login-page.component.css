@@ -17,6 +17,7 @@
     min-height: 50vh;
     background-color: white;
     border-radius: 10px;
+    box-shadow: var(--box-shadow-1);
 }
 
 .login-img {

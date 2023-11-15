@@ -6,5 +6,6 @@
     /* color para texto */
     --color-3: rgba(0, 0, 0, 0.644);
     --font-family-1: "Poppins", sans-serif;
+    --box-shadow-1: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
