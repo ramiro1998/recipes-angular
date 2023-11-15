@@ -1,0 +1,26 @@
+<div class="recipe-individual">
+    <!-- <img [src]="recipe.imagen" alt="{{ recipe.nombre }}">
+    <h1>{{ recipe.name }}</h1>
+    <img src="" alt="">
+    <p>{{ recipe.description }}</p> -->
+    <form (submit)="submitForm()" [formGroup]="formRecipe">
+        <div class="form-group">
+            <!-- <label for="name">Nombre:</label> -->
+            <input type="text" class="form-control" id="name" name="name" formControlName="name">
+        </div>
+        <!-- <img [src]="recipe.imagen" alt="{{ recipe.nombre }}"> -->
+        <img [src]="recipe.imagePath" alt="{{ recipe.name }}">
+        <div class="form-group">
+            <label for="description">Descripción:</label>
+            <textarea class="form-control" id="description" name="description" formControlName="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="imagePath">URL de la imagen:</label>
+            <input type="text" class="form-control" id="imagePath" name="imagePath" formControlName="url">
+        </div>
+    </form>
+    <div class="botones">
+        <a class="btn btn-primary" role="button" (click)="editRecipe(recipe)">Editar</a>
+        <a class="btn btn-danger" role="button" (click)="deleteRecipe(recipe)">Eliminar</a>
+    </div>
+</div>

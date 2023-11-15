@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+<<<<<<< Updated upstream
+=======
+:root {
+    --color-1: #BCF5A9;
+    --color-2: #F5A9F2;
+    --font-family-1: "Poppins", sans-serif;
+}
+
+body{
+    background-color: var(--color-2);
+}
+>>>>>>> Stashed changes
