@@ -1,0 +1,101 @@
+.ingredients-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-2);
+}
+
+.ingredients {
+  position: relative;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  height: 75vh;
+  margin: 50px 0;
+  padding: 60px;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow-1);
+}
+
+.products {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.img {
+  width: 300px;
+  height: 300px;
+  margin-right: 20px;
+}
+
+.title {
+  color: var(--color-3);
+  font-weight: bold;
+  font-size: 28px;
+  margin-top: 1.5rem;
+  margin-left: 5px;
+}
+
+.add {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem 0;
+}
+
+input {
+  width: 200px;
+  margin: 6px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  text-indent: 4px;
+}
+
+button {
+  width: 200px;
+  border: 1px solid var(--color-3);
+  border-radius: 4px;
+  background-color: var(--color-1);
+  color: var(--color-3);
+  font-weight: bold;
+  margin: 6px 0.3rem;
+  font-size: 13px;
+  padding: 4px 8px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.grocery {
+  margin-right: 1rem;
+  margin-bottom: -4.5rem;
+  position: absolute;
+  width: 300px;
+  bottom: 0;
+  right: 0;
+}
+
+.list {
+  width: 92%;
+  background-color: var(--color-1);
+  margin-left: 5px;
+  padding: 15px 40px;
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 1530px) {
+  .title {
+    width: 100%;
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 1325px) {
+    .title {
+      font-size: 16px;
+    }
+  }
