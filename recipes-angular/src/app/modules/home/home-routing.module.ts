@@ -5,9 +5,6 @@ import { IndividualRecipeComponent } from './pages/individual-recipe/individual-
 
 const routes: Routes = [
   {
-    path: 'home', component: HomePageComponent
-  },
-  {
     path: 'recipe/:id', component: IndividualRecipeComponent
   },
   {
@@ -15,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('../ingredients/ingredients.module').then(m => m.IngredientsModule)
   },
   // {
-  //   path: '**', redirectTo: 'home'
+  //   path: '**', redirectTo: ''
   // }
 ];
 

@@ -2,9 +2,9 @@
     <div class="form-container">
         <img class="login-img" src="../../../../../assets/recipe-book.png" alt="">
         <h5 class="form-title">Inicio de sesión</h5>
-        <form class="form" action="">
-            <input placeholder="Email" type="email">
-            <input placeholder="Password" type="password">
+        <form (ngSubmit)="sendLogin()" [formGroup]="formLogin" class="form" action="">
+            <input formControlName="email" placeholder="Email" type="email">
+            <input formControlName="password" placeholder="Password" type="password">
             <button type="submit">Ingresar</button>
             <span (click)="goRegister()">Registrarme</span>
         </form>

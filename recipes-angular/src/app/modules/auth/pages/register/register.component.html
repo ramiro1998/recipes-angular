@@ -2,9 +2,9 @@
     <div class="form-container">
         <img class="login-img" src="../../../../../assets/recipe-book.png" alt="">
         <h5 class="form-title">Crea tu cuenta</h5>
-        <form class="form" action="">
-            <input placeholder="Email" type="email">
-            <input placeholder="Password" type="password">
+        <form (ngSubmit)="sendRegister()" [formGroup]="formRegister" class="form" action="">
+            <input formControlName="email" placeholder="Email" type="email">
+            <input formControlName="password" placeholder="Password" type="password">
             <button type="submit">Registrarme</button>
             <span (click)="goLogin()">Ya tengo cuenta</span>
         </form>
