@@ -11,6 +11,14 @@ const routes: Routes = [
     path: 'recipe/:id', component: IndividualRecipeComponent
   },
   {
+    path: 'auth',
+    loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'ingredients',
+    loadChildren: () => import('../ingredients/ingredients.module').then(m => m.IngredientsModule)
+  },
+  {
     path: '**', redirectTo: 'home'
   }
 ];
