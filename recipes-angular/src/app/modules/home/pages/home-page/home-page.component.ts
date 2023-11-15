@@ -8,12 +8,8 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
-<<<<<<< Updated upstream
-export class HomePageComponent {
-=======
 
 export class HomePageComponent implements OnInit {
->>>>>>> Stashed changes
 
   recipes: Recipe[] = []/* [{ _id: '1', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '2', name: 'receta2', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '3', name: 'receta3', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '4', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '5', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '6', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '7', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }] */
 
