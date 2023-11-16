@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth-service.service';
 import Swal from 'sweetalert2';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login-page',
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
 export class LoginPageComponent {
   formLogin: FormGroup = new FormGroup({});
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService, private cookie: CookieService) { }
 
   ngOnInit(): void {
     this.formLogin = new FormGroup({
@@ -30,6 +31,8 @@ export class LoginPageComponent {
 
     this.authService.sendCredentials(email, password).subscribe(
       (responseOk) => {
+        const { idToken } = responseOk;
+        this.cookie.set('recipesToken', idToken, 4, '/');
         this.router.navigate(['/'])
         Swal.fire({
           title: "Good job!",

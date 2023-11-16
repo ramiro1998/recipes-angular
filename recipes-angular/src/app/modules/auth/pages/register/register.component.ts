@@ -34,7 +34,7 @@ export class RegisterComponent {
         this.router.navigate(['/auth/login'])
         Swal.fire({
           title: "Good job!",
-          text: "Registro exitoso!",
+          text: "Puedes iniciar sesión!",
           icon: "success"
         });
         console.log(responseOk);

@@ -14,9 +14,9 @@ const routes: Routes = [
     path: 'ingredients',
     loadChildren: () => import('../ingredients/ingredients.module').then(m => m.IngredientsModule)
   },
-  {
-    path: '**', redirectTo: ''
-  }
+  // {
+  //   path: '**', redirectTo: ''
+  // }
 ];
 
 @NgModule({

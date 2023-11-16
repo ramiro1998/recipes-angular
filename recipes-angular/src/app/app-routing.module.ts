@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { sessionGuard } from './core/guards/session.guard';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
       import('./modules/pages/pages.module').then((m) => m.PagesModule),
+      canActivate: [sessionGuard]
   },
   {
     path: 'auth',
