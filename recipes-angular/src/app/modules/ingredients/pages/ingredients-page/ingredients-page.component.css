@@ -13,7 +13,7 @@
   display: flex;
   justify-content: space-around;
   width: 50%;
-  height: 75vh;
+  min-height: 70vh;
   margin-top: -5rem;
   padding: 60px;
   border-radius: 10px;
@@ -72,9 +72,9 @@ button:hover {
 
 .grocery {
   margin-right: 1rem;
-  margin-bottom: -4.5rem;
+  margin-bottom: -3rem;
   position: absolute;
-  width: 300px;
+  width: 200px;
   bottom: 0;
   right: 0;
 }
@@ -90,12 +90,78 @@ button:hover {
 @media only screen and (max-width: 1530px) {
   .title {
     width: 100%;
-    font-size: 20px;
+    font-size: 16px;
+  }
+
+  .grocery {
+    width: 150px;
+    margin-bottom: -2rem;
   }
 }
 
-@media only screen and (max-width: 1325px) {
-    .title {
-      font-size: 16px;
-    }
+@media only screen and (max-width: 1200px) {
+  .ingredients {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    margin-top: 3rem;
   }
+
+  .title {
+    text-align: center;
+  }
+
+  .add {
+    margin: 2rem auto;
+  }
+
+  .img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .products {
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .ingredients {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  
+  .title {
+    font-size: 13px;
+  }
+
+  .add {
+    margin: 10px auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input {
+    width: 80%;
+    font-size: 14px;
+  }
+
+  button {
+    width: 80%;
+    font-size: 12px;
+  }
+
+  .list {
+    font-size: 11px;
+  }
+
+  .grocery {
+    display: none;
+  }
+}

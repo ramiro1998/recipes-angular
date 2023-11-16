@@ -71,3 +71,18 @@ span:hover {
     cursor: pointer;
     text-decoration: underline;
 }
+
+@media only screen and (max-width: 450px) {
+    .form-container {
+        width: 85%;
+        min-height: 40vh;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+}
