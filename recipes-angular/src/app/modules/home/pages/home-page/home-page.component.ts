@@ -38,10 +38,6 @@ export class HomePageComponent implements OnInit {
     })
   }
 
-  goIndividualRecipe(recipe: Recipe) {
-    this.route.navigate([`/recipe/${recipe._id}`])
-  }
-
   openModal() {
     this.showModal = !this.showModal
     console.log('show', this.showModal)

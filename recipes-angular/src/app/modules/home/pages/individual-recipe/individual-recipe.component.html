@@ -1,23 +1,27 @@
 <div class="recipe-individual" *ngIf="recipe.name != ''">
     <form (submit)="submitForm()" [formGroup]="formRecipe" class="form-container">
         <div class="form-group">
-            <input type="text" class="form-control" id="name" name="name" formControlName="name" maxlength="45">
+            <input type="text" class="form-control input-custom-width" id="name" name="name" formControlName="name"
+                maxlength="45">
         </div>
         <img [src]="recipe.imagePath" alt="{{ recipe.name }}">
         <div class="form-group">
             <label for="description" class="text-name">Descripción:</label>
-            <textarea class="form-control" id="description" name="description" formControlName="description"></textarea>
+            <textarea class="form-control input-custom-width" id="description" name="description" formControlName="description"></textarea>
         </div>
         <div class="form-group">
             <label for="imagePath" class="text-name">URL imagen:</label>
-            <input type="text" class="form-control" id="imagePath" name="imagePath" formControlName="imagePath">
+            <input type="text" class="form-control input-custom-width" id="imagePath" name="imagePath"
+                formControlName="imagePath">
         </div>
         <div formArrayName="ingredients">
             <label for="ingredients" class="text-name">Ingredientes:</label>
             <div *ngFor="let ingredient of getForm().controls; let i = index" [formGroupName]="i"
                 class="container-ingredient">
-                <input type="text" class="input-ingredient" formControlName="name" placeholder="Nombre">
-                <input type="text" class="input-ingredient" formControlName="amount" placeholder="Cantidad">
+                <input type="text" class="input-ingredient input-custom-width" formControlName="name"
+                    placeholder="Nombre">
+                <input type="text" class="input-ingredient input-custom-width" formControlName="amount"
+                    placeholder="Cantidad">
                 <a *ngIf="editMode" class="deleteRecord" (click)="removeIngredient(i)">
                     <i class="fas fa-trash" style="color: #e0190b;"></i>
                 </a>
@@ -27,10 +31,9 @@
         </div>
     </form>
     <div class="botones">
-        <a *ngIf="!editMode" class="btn btn-primary button-dimension" role="button" (click)="editRecipe(recipe)"
-            style="margin-left: 250px;">Editar</a>
-        <a *ngIf="editMode" class="btn btn-primary button-dimension" style="margin-left: 230px;" role="button"
-            (click)="saveRecipe()">Guardar</a>
+        <a *ngIf="!editMode" class="btn btn-primary button-dimension" role="button"
+            (click)="editRecipe(recipe)">Editar</a>
+        <a *ngIf="editMode" class="btn btn-primary button-dimension" role="button" (click)="saveRecipe()">Guardar</a>
         <a *ngIf="editMode" class="btn btn-danger-custom button-dimension" role="button"
             (click)="cancelSave()">Cancelar</a>
         <a *ngIf="!editMode" class="btn btn-danger-custom button-dimension" role="button"

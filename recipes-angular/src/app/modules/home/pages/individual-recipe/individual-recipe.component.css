@@ -2,12 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
-    gap: 20px;
 }
 
 .recipe-individual img {
-    width: 400px;
+    max-width: 70%;
+    margin: 0 auto;
     height: auto;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -33,9 +32,14 @@
 .form-container {
     background-color: white;
     padding: 30px;
+    margin: 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.input-custom-width {
+    width: 100%;
 }
 
 .text-name {
@@ -82,4 +86,19 @@
     border-radius: 100%;
     color: red !important;
     cursor: pointer;
+}
+
+@media (max-width: 400px) {
+    .form-container {
+        padding: 5px;
+    }
+
+    .input-custom-width {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .text-name {
+        margin-left: 10%;
+    }
 }

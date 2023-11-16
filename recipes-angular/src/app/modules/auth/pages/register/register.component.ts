@@ -5,17 +5,17 @@ import { AuthService } from '../../services/auth-service.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginPageComponent {
-  formLogin: FormGroup = new FormGroup({});
-
+export class RegisterComponent {
+  formRegister: FormGroup = new FormGroup({});
+  
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.formLogin = new FormGroup({
+    this.formRegister = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
         Validators.required,
@@ -25,23 +25,24 @@ export class LoginPageComponent {
     });
   }
 
-  sendLogin(): void {
-    const { email, password } = this.formLogin.value;
+  sendRegister(): void {
+    
+    const { email, password } = this.formRegister.value;
 
-    this.authService.sendCredentials(email, password).subscribe(
+    this.authService.newUser(email, password).subscribe(
       (responseOk) => {
-        this.router.navigate(['/'])
+        this.router.navigate(['/auth/login'])
         Swal.fire({
           title: "Good job!",
-          text: "Ingreso exitoso!",
+          text: "Registro exitoso!",
           icon: "success"
         });
         console.log(responseOk);
       },
       (error) => {
         Swal.fire({
-          title: "Credenciales invalidas",
-          text: "Te la mandaste!",
+          title: "Erro de conexión",
+          text: "Intente más tarde",
           icon: "error"
         });
         console.log(error);
@@ -49,12 +50,7 @@ export class LoginPageComponent {
     );
   }
 
-  goRegister(): void {
-    this.router.navigate(['/auth/register']);
+  goLogin(): void {
+    this.router.navigate(['/auth/login']);
   }
 }
-
-// {
-//   "email":"userTest@test.com",
-//   "password":"123456"
-// }

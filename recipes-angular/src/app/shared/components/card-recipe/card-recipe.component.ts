@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Recipe } from 'src/app/core/models/recipe.model';
 
 @Component({
@@ -8,4 +9,11 @@ import { Recipe } from 'src/app/core/models/recipe.model';
 })
 export class CardRecipeComponent {
   @Input() recipe!: Recipe
+
+  constructor(private route: Router) { }
+
+
+  goIndividualRecipe(recipe: Recipe) {
+    this.route.navigate([`/recipe/${recipe._id}`])
+  }
 }

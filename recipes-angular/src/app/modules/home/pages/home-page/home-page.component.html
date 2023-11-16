@@ -7,7 +7,7 @@
 
     <div class="recipes-container" [ngClass]="{'recipes-container-2': recipes.length > 3}">
         <div class="recipe" *ngFor="let recipe of recipes">
-            <app-card-recipe [recipe]="recipe" (click)="goIndividualRecipe(recipe)"></app-card-recipe>
+            <app-card-recipe [recipe]="recipe"></app-card-recipe>
         </div>
     </div>
 </div>
