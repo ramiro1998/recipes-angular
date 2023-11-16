@@ -48,4 +48,19 @@ export class AlertsService {
   }
 
 
+  createDeleteAlert(name: string, state: string) {
+    Swal.fire({
+      title: `${name} ${state}`,
+      icon: 'success'
+    });
+  }
+
+  errorAlert(name: string) {
+    Swal.fire({
+      title: `Error en el guardado de la ${name}`,
+      icon: 'error'
+    });
+  }
+
+
 }

@@ -44,3 +44,16 @@ body {
     background-color: red !important;
     color: white !important;
 }
+
+*::-webkit-scrollbar {
+    width: 0.85rem;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--color-2);
+    border-radius: 0.5rem;
+}
+
+.hyperlink-icon {
+    cursor: pointer;
+}

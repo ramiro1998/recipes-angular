@@ -32,7 +32,7 @@
 
 .form-container {
     background-color: white;
-    padding: 20px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -64,4 +64,22 @@
 
 .button-dimension {
     width: 100px;
+}
+
+/* iconos */
+.deleteRecord {
+    display: flex;
+    transition: all 0.3s ease !important;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    flex: 1;
+}
+
+.deleteRecord:hover {
+    background-color: #666 !important;
+    border-radius: 100%;
+    color: red !important;
+    cursor: pointer;
 }

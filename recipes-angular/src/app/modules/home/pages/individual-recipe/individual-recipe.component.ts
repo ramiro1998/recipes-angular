@@ -17,6 +17,7 @@ export class IndividualRecipeComponent implements OnInit {
   recipes: Recipe[] = []/* [{ _id: '1', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '2', name: 'receta2', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '3', name: 'receta3', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '4', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '5', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '6', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '7', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }] */
   recipe: Recipe = { _id: '', name: '', description: '', imagePath: '', ingredients: [] };
   formRecipe!: FormGroup
+  editMode: boolean = false
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private recipeService: RecipeService, private alertService: AlertsService) {
     this.formRecipe = this.fb.group({
@@ -30,42 +31,45 @@ export class IndividualRecipeComponent implements OnInit {
   ngOnInit(): void {
     try {
       this.alertService.loading();
-      this.recipeService.getAllRecips().subscribe((recipes) => {
-        this.recipes = recipes;
-        this.recipe = this.recipes.filter((recipe) => recipe._id === this.route.snapshot.paramMap.get('id'))[0];
-        console.log('entering', this.recipe);
-        console.log('recipes', this.recipes);
-
-        if (Array.isArray(this.recipe.ingredients)) {
-          const ingredientsFormArray = this.formRecipe.get('ingredients') as FormArray;
-          ingredientsFormArray.clear();
-          this.recipe.ingredients.forEach((ingredient: any) => {
-            const ingredientGroup = this.fb.group({
-              name: [ingredient.name, Validators.required],
-              amount: [ingredient.amount, Validators.required],
-            });
-            ingredientsFormArray.push(ingredientGroup);
-          });
-        }
-
-        this.formRecipe.patchValue({
-          name: this.recipe.name,
-          description: this.recipe.description,
-          imagePath: this.recipe.imagePath,
-        });
-
-        this.formRecipe.disable();
-        Swal.close();
-
-      }, (error) => console.log('error', error));
+      this.loadForm()
     } catch (error) {
-      console.log('erorrrrrr');
     }
   }
 
+  loadForm() {
+    this.recipeService.getAllRecips().subscribe((recipes) => {
+      this.recipes = recipes;
+      this.recipe = this.recipes.filter((recipe) => recipe._id === this.route.snapshot.paramMap.get('id'))[0];
+      console.log('entering', this.recipe);
+      console.log('recipes', this.recipes);
+
+      if (Array.isArray(this.recipe.ingredients)) {
+        const ingredientsFormArray = this.formRecipe.get('ingredients') as FormArray;
+        ingredientsFormArray.clear();
+        this.recipe.ingredients.forEach((ingredient: any) => {
+          const ingredientGroup = this.fb.group({
+            name: [ingredient.name, Validators.required],
+            amount: [ingredient.amount, Validators.required],
+          });
+          ingredientsFormArray.push(ingredientGroup);
+        });
+      }
+
+      this.formRecipe.patchValue({
+        name: this.recipe.name,
+        description: this.recipe.description,
+        imagePath: this.recipe.imagePath,
+      });
+
+      this.formRecipe.disable();
+      Swal.close();
+
+    }, (error) => console.log('error', error));
+  }
 
   editRecipe(recipe: Recipe) {
     this.formRecipe.enable();
+    this.editMode = true
   }
 
   deleteRecipe(recipe: Recipe) {
@@ -83,6 +87,32 @@ export class IndividualRecipeComponent implements OnInit {
       amount: ['', Validators.required],
     });
     ingredientsFormArray.push(newIngredientGroup);
+  }
+
+  removeIngredient(index: number) {
+    const ingredientsFormArray = this.getForm()
+    ingredientsFormArray.removeAt(index);
+  }
+
+  cancelSave() {
+    this.alertService.loading()
+    this.editMode = false
+    this.formRecipe.reset()
+    this.loadForm()
+  }
+
+  saveRecipe() {
+    const recipeId = this.route.snapshot.paramMap.get('id');
+    const recipeData = this.formRecipe.value;
+    console.log('data: ', recipeData)
+    console.log('recipeId: ', recipeId)
+    this.recipeService.editRecipe(recipeData, recipeId as string).subscribe((recipeCreated: Recipe) => {
+      this.alertService.createDeleteAlert('receta', 'editada')
+      this.editMode = false
+      this.formRecipe.disable()
+    }, error => {
+      this.alertService.errorAlert('receta')
+    })
   }
 
   submitForm() {

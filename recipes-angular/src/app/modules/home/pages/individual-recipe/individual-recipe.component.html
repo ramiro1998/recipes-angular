@@ -14,18 +14,26 @@
         </div>
         <div formArrayName="ingredients">
             <label for="ingredients" class="text-name">Ingredientes:</label>
-            <div *ngFor="let ingredient of getForm().controls; let i = index" [formGroupName]="i" class="container-ingredient">
+            <div *ngFor="let ingredient of getForm().controls; let i = index" [formGroupName]="i"
+                class="container-ingredient">
                 <input type="text" class="input-ingredient" formControlName="name" placeholder="Nombre">
                 <input type="text" class="input-ingredient" formControlName="amount" placeholder="Cantidad">
-                <a *ngIf="ingredient.get('name')?.value && ingredient.get('amount')?.value">
-                    <i class="fas fa-trash" style="color: #e0190b; margin-left: 5px;"></i>
+                <a *ngIf="editMode" class="deleteRecord" (click)="removeIngredient(i)">
+                    <i class="fas fa-trash" style="color: #e0190b;"></i>
                 </a>
             </div>
-            <a (click)="addIngredient()">add</a>
+            <a *ngIf="editMode" (click)="addIngredient()" class="hyperlink-icon"><i class="fas fa-plus-octagon"
+                    style="color: #4c9d31; font-size: 22px; margin-top: 5px;"></i></a>
         </div>
     </form>
     <div class="botones">
-        <a class="btn btn-primary button-dimension" role="button" (click)="editRecipe(recipe)">Editar</a>
-        <a class="btn btn-danger-custom button-dimension" role="button" (click)="deleteRecipe(recipe)">Eliminar</a>
+        <a *ngIf="!editMode" class="btn btn-primary button-dimension" role="button" (click)="editRecipe(recipe)"
+            style="margin-left: 250px;">Editar</a>
+        <a *ngIf="editMode" class="btn btn-primary button-dimension" style="margin-left: 230px;" role="button"
+            (click)="saveRecipe()">Guardar</a>
+        <a *ngIf="editMode" class="btn btn-danger-custom button-dimension" role="button"
+            (click)="cancelSave()">Cancelar</a>
+        <a *ngIf="!editMode" class="btn btn-danger-custom button-dimension" role="button"
+            (click)="deleteRecipe(recipe)">Eliminar</a>
     </div>
 </div>
