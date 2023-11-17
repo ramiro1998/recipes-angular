@@ -7,17 +7,20 @@ const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./modules/pages/pages.module').then((m) => m.PagesModule),
-      canActivate: [sessionGuard]
+    canActivate: [sessionGuard]
   },
   {
     path: 'auth',
     loadChildren: () =>
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: '**', redirectTo: ''
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

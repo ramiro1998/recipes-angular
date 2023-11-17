@@ -114,6 +114,10 @@ export class IndividualRecipeComponent implements OnInit {
     });
   }
 
+  changeURLimg(url: string) {
+    if (url) this.formRecipe.get('imagePath')?.setValue(`${url}`)
+  }
+
   cancelSave() {
     this.alertService.loading()
     this.editMode = false

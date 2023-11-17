@@ -8,14 +8,12 @@ export const sessionGuard = (): boolean => {
 
   try {
     const token: boolean = cookieService.check('recipesToken');
-
     if (!token) {
       router.navigate(['/auth/login']);
     }
     
     return token;
   } catch (e) {
-    console.log('Debe loguearse', e);
     return false;
   }
 };
