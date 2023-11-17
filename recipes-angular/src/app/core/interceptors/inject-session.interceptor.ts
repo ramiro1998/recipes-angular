@@ -1,33 +1,32 @@
 import { Injectable } from '@angular/core';
 import {
+  HttpInterceptor,
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpResponse,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Injectable()
 export class InjectSessionInterceptor implements HttpInterceptor {
+  constructor(private router: Router) {}
 
-  constructor(private cookie: CookieService) {}
-
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    try {
-      const token = this.cookie.get('recipesToken');
-      let newRequest = request;
-      newRequest = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`,
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return next.handle(request).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          Swal.close();
+          this.router.navigate(['/auth/login']);
         }
-      });
-
-      return next.handle(newRequest);
-
-    } catch (error) {
-      console.log('Problema con el token', error);
-      return next.handle(request);
-    }
+        return throwError(error);
+      })
+    );
   }
 }
+
+// InjectSessionInterceptor
