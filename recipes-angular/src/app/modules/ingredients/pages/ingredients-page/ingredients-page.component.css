@@ -69,12 +69,12 @@ button:hover {
 }
 
 .grocery {
-  margin-right: 1rem;
+  margin-left: 1rem;
   margin-bottom: -3rem;
   position: absolute;
   width: 200px;
   bottom: 0;
-  right: 0;
+  left: 0;
 }
 
 .list {
