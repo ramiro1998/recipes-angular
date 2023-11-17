@@ -5,7 +5,7 @@
                 maxlength="45" placeholder="Nombre de la receta">
             <label class="error-label">{{getErrorMessage(formRecipe.get('name'))}}</label>
         </div>
-        <img appBrokenImage [src]="formRecipe.get('imagePath')?.value" alt="recipe.name" class="card-img-top">
+        <img *ngIf="!newRecipeBoolean || formRecipe.get('imagePath')?.value" appBrokenImage [src]="formRecipe.get('imagePath')?.value" alt="recipe.name" class="card-img-top">
         <div class="form-group">
             <textarea class="form-control input-custom-width" id="description" name="description"
                 formControlName="description" placeholder="Descripción"></textarea>
