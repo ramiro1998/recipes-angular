@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { CardRecipeComponent } from './components/card-recipe/card-recipe.component';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { FormsModule } from '@angular/forms';
+import { LengthDescriptionPipe } from './pipes/length-description.pipe';
+import { BrokenImageDirective } from './directives/broken-image.directive';
 
 
 
@@ -10,14 +14,21 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   declarations: [
     CardRecipeComponent,
     NavbarComponent,
+    SearchBarComponent,
+    LengthDescriptionPipe,
+    BrokenImageDirective,
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports: [
     CardRecipeComponent,
-    NavbarComponent
+    NavbarComponent,
+    SearchBarComponent,
+    LengthDescriptionPipe,
+    BrokenImageDirective
   ]
 })
 export class SharedModule { }

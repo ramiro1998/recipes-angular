@@ -2,12 +2,13 @@
     border-radius: 10px;
     border: none;
     max-width: 500px;
+    height: 330px;
 }
 
 .card-img-top {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    width: 400px;
+    max-width: 70%;
     height: 200px;
     padding-top: 10px;
 }
@@ -20,4 +21,10 @@
 .card-text {
     font-family: var(--font-family-1);
     color: black;
+}
+
+@media (max-width: 350px) {
+    .card {
+        width: 80vw;
+    }
 }

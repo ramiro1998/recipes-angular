@@ -1,42 +1,48 @@
-<div class="recipe-individual" *ngIf="recipe.name != ''">
+<div class="recipe-individual">
     <form (submit)="submitForm()" [formGroup]="formRecipe" class="form-container">
         <div class="form-group">
             <input type="text" class="form-control input-custom-width" id="name" name="name" formControlName="name"
                 maxlength="45">
+            <label class="error-label">{{getErrorMessage(formRecipe.get('name'))}}</label>
         </div>
         <img [src]="recipe.imagePath" alt="{{ recipe.name }}">
         <div class="form-group">
             <label for="description" class="text-name">Descripción:</label>
-            <textarea class="form-control input-custom-width" id="description" name="description" formControlName="description"></textarea>
+            <textarea class="form-control input-custom-width" id="description" name="description"
+                formControlName="description"></textarea>
+            <label class="error-label">{{getErrorMessage(formRecipe.get('description'))}}</label>
         </div>
         <div class="form-group">
             <label for="imagePath" class="text-name">URL imagen:</label>
             <input type="text" class="form-control input-custom-width" id="imagePath" name="imagePath"
                 formControlName="imagePath">
+            <label class="error-label">{{getErrorMessage(formRecipe.get('imagePath'))}}</label>
         </div>
-        <div formArrayName="ingredients">
+        <div formArrayName="ingredients" class="container-ingredients">
             <label for="ingredients" class="text-name">Ingredientes:</label>
             <div *ngFor="let ingredient of getForm().controls; let i = index" [formGroupName]="i"
-                class="container-ingredient">
-                <input type="text" class="input-ingredient input-custom-width" formControlName="name"
+                class="container-ingredient input-custom-width">
+                <input type="text" class="input-ingredient input-name-amount" formControlName="name"
                     placeholder="Nombre">
-                <input type="text" class="input-ingredient input-custom-width" formControlName="amount"
+                <input type="text" class="input-ingredient input-name-amount" formControlName="amount"
                     placeholder="Cantidad">
-                <a *ngIf="editMode" class="deleteRecord" (click)="removeIngredient(i)">
+                <a *ngIf="editMode" class="deleteRecord" (click)="removeIngredient(i, ingredient)">
                     <i class="fas fa-trash" style="color: #e0190b;"></i>
                 </a>
             </div>
-            <a *ngIf="editMode" (click)="addIngredient()" class="hyperlink-icon"><i class="fas fa-plus-octagon"
-                    style="color: #4c9d31; font-size: 22px; margin-top: 5px;"></i></a>
+            <a *ngIf="editMode || newRecipeBoolean" (click)="addIngredient()" class="hyperlink-icon" style="margin-left: 10%;"><i
+                    class="fas fa-plus-octagon" style="color: #4c9d31; font-size: 22px; margin-top: 5px;"></i></a>
+            <label class="error-label">{{getErrorMessage(formRecipe.get('ingredients'))}}</label>
         </div>
     </form>
     <div class="botones">
-        <a *ngIf="!editMode" class="btn btn-primary button-dimension" role="button"
+        <a *ngIf="!editMode && !newRecipeBoolean" class="btn btn-primary button-dimension" role="button"
             (click)="editRecipe(recipe)">Editar</a>
-        <a *ngIf="editMode" class="btn btn-primary button-dimension" role="button" (click)="saveRecipe()">Guardar</a>
+        <a *ngIf="editMode || newRecipeBoolean" class="btn btn-primary button-dimension" role="button"
+            (click)="saveRecipe()">Guardar</a>
         <a *ngIf="editMode" class="btn btn-danger-custom button-dimension" role="button"
             (click)="cancelSave()">Cancelar</a>
-        <a *ngIf="!editMode" class="btn btn-danger-custom button-dimension" role="button"
+        <a *ngIf="!editMode && !newRecipeBoolean" class="btn btn-danger-custom button-dimension" role="button"
             (click)="deleteRecipe(recipe)">Eliminar</a>
     </div>
 </div>

@@ -5,8 +5,8 @@
 
 .container-new-button {
   padding: 20px 0 0 40px;
-  /* padding-top: 20px;
-    padding-left: 35px; */
+  display: flex;
+  gap: 5px;
 }
 
 .recipes-container {
@@ -61,8 +61,8 @@
   transform: scale(1.05);
 }
 
-/* modal */
-.form-container {
-  display: flex;
-  flex-direction: column;
+/* paginator */
+
+::ng-deep .ngx-pagination .disabled {
+  color: black !important;
 }

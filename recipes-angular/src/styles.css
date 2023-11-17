@@ -57,3 +57,7 @@ body {
 .hyperlink-icon {
     cursor: pointer;
 }
+
+.error-label {
+    color: red;
+}

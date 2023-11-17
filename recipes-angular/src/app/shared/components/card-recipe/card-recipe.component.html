@@ -1,7 +1,7 @@
 <div class="card">
-    <!-- <img class="card-img-top" src="{{ recipe.imagen }}" alt="{{ recipe.name }}"> -->
     <div>
-        <img [src]="recipe.imagePath" alt="recipe.name" class="card-img-top">
+        <img appBrokenImage [src]="recipe.imagePath" alt="recipe.name"
+            class="card-img-top">
     </div>
     <div class="card-body">
         <h5 class="card-title">{{ recipe.name }}</h5>

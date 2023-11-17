@@ -17,6 +17,7 @@ export class HomePageComponent implements OnInit {
   recipes: Recipe[] = []/* [{ _id: '1', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '2', name: 'receta2', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '3', name: 'receta3', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '4', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '5', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '6', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '7', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }] */
   showModal: boolean = false
   recipeForm!: FormGroup
+  p: number = 1
 
   constructor(private route: Router, private fb: FormBuilder, private recipeSercvice: RecipeService, private alertService: AlertsService) { }
 
@@ -32,20 +33,20 @@ export class HomePageComponent implements OnInit {
 
   getRecipes() {
     this.recipeSercvice.getAllRecips().subscribe((recipes: Recipe[]) => {
-      console.log('datiñoss', recipes)
       this.recipes = recipes
       Swal.close()
     })
   }
 
-  openModal() {
-    this.showModal = !this.showModal
-    console.log('show', this.showModal)
+  goIndividualRecipe() {
+    this.route.navigate([`/recipe/noid`])
   }
 
-  onSubmit() {
-
+  searchRecipes(value: any) {
+    this.recipeSercvice.getAllRecips().subscribe((recipes: Recipe[]) => {
+      this.recipes = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
+      Swal.close()
+    })
   }
-
 
 }

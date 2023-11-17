@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -24,7 +25,9 @@ export class AlertsService {
     })
   }
 
-  deleteAlert(name: string, object: string) {
+  deleteAlert(name: string, object: string): Observable<boolean> {
+    const subject = new Subject<boolean>();
+  
     Swal.fire({
       title: `¿Está seguro que quiere eliminar ${object}: ${name}?`,
       showDenyButton: true,
@@ -36,15 +39,14 @@ export class AlertsService {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: "Receta eliminada!",
-          icon: "success",
-          customClass: {
-            popup: 'sweet-popup'
-          }
-        });
+        subject.next(true);
+      } else {
+        subject.next(false);
       }
+      subject.complete();
     });
+  
+    return subject.asObservable();
   }
 
 

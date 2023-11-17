@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from 'src/app/core/models/recipe.model';
 import { AlertsService } from 'src/app/shared/services/alerts.service';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
@@ -18,8 +18,10 @@ export class IndividualRecipeComponent implements OnInit {
   recipe: Recipe = { _id: '', name: '', description: '', imagePath: '', ingredients: [] };
   formRecipe!: FormGroup
   editMode: boolean = false
+  newRecipeBoolean: boolean = false
+  formsubmitted: boolean = false
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private recipeService: RecipeService, private alertService: AlertsService) {
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private recipeService: RecipeService, private alertService: AlertsService, private router: Router) {
     this.formRecipe = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(45)]],
       description: ['', Validators.required],
@@ -31,7 +33,14 @@ export class IndividualRecipeComponent implements OnInit {
   ngOnInit(): void {
     try {
       this.alertService.loading();
-      this.loadForm()
+      const existId = this.route.snapshot.paramMap.get('id');
+      if (existId && existId != 'noid') {
+        this.loadForm()
+        this.newRecipeBoolean = false
+      } else {
+        this.newRecipeBoolean = true
+        Swal.close();
+      }
     } catch (error) {
     }
   }
@@ -40,8 +49,6 @@ export class IndividualRecipeComponent implements OnInit {
     this.recipeService.getAllRecips().subscribe((recipes) => {
       this.recipes = recipes;
       this.recipe = this.recipes.filter((recipe) => recipe._id === this.route.snapshot.paramMap.get('id'))[0];
-      console.log('entering', this.recipe);
-      console.log('recipes', this.recipes);
 
       if (Array.isArray(this.recipe.ingredients)) {
         const ingredientsFormArray = this.formRecipe.get('ingredients') as FormArray;
@@ -73,7 +80,16 @@ export class IndividualRecipeComponent implements OnInit {
   }
 
   deleteRecipe(recipe: Recipe) {
-    this.alertService.deleteAlert(recipe.name, 'receta')
+    this.alertService.deleteAlert(recipe.name, 'receta').subscribe((confirmed) => {
+      if (confirmed) {
+        this.recipeService.deleteRecipe(this.route.snapshot.paramMap.get('id') as string).subscribe(() => {
+          this.alertService.createDeleteAlert('receta', 'eliminada')
+          setTimeout(() => {
+            this.router.navigate([`/`])
+          }, 1000);
+        }, error => this.alertService.errorAlert(recipe.name))
+      }
+    });
   }
 
   getForm() {
@@ -89,9 +105,13 @@ export class IndividualRecipeComponent implements OnInit {
     ingredientsFormArray.push(newIngredientGroup);
   }
 
-  removeIngredient(index: number) {
-    const ingredientsFormArray = this.getForm()
-    ingredientsFormArray.removeAt(index);
+  removeIngredient(index: number, ingredient: any) {
+    this.alertService.deleteAlert(ingredient.get('name').value, 'ingrediente').subscribe((confirmed) => {
+      if (confirmed) {
+        const ingredientsFormArray = this.getForm()
+        ingredientsFormArray.removeAt(index);
+      }
+    });
   }
 
   cancelSave() {
@@ -101,18 +121,53 @@ export class IndividualRecipeComponent implements OnInit {
     this.loadForm()
   }
 
+  getErrorMessage(control: any): string {
+    if (control.touched || this.formsubmitted) {
+      if (control.errors?.required) {
+        return 'Campo requerido';
+      }
+
+      if (control instanceof FormArray) {
+        if (control.length == 0) return 'Debe agregar al menos un ingrediente'
+        for (let i = 0; i < control.controls.length; i++) {
+          const ingredientGroup = control.controls[i] as FormGroup;
+          if (ingredientGroup.controls['name'].errors || ingredientGroup.controls['amount'].errors) {
+            return 'Hay errores en los ingredientes';
+          }
+        }
+      }
+    }
+    return '';
+  }
+
   saveRecipe() {
-    const recipeId = this.route.snapshot.paramMap.get('id');
-    const recipeData = this.formRecipe.value;
-    console.log('data: ', recipeData)
-    console.log('recipeId: ', recipeId)
-    this.recipeService.editRecipe(recipeData, recipeId as string).subscribe((recipeCreated: Recipe) => {
-      this.alertService.createDeleteAlert('receta', 'editada')
-      this.editMode = false
-      this.formRecipe.disable()
-    }, error => {
+    this.formsubmitted = true
+    if (this.formRecipe.valid) {
+      if (this.newRecipeBoolean) {
+        const recipeId = this.route.snapshot.paramMap.get('id');
+        const recipeData = this.formRecipe.value;
+        this.recipeService.newRecipe(recipeData).subscribe((recipeCreated: Recipe) => {
+          this.alertService.createDeleteAlert('receta', 'creada')
+          setTimeout(() => {
+            this.router.navigate([`/`])
+          }, 1000);
+        }, error => {
+          this.alertService.errorAlert('receta')
+        })
+      } else {
+        const recipeId = this.route.snapshot.paramMap.get('id');
+        const recipeData = this.formRecipe.value;
+        this.recipeService.editRecipe(recipeData, recipeId as string).subscribe((recipeEdited: Recipe) => {
+          this.alertService.createDeleteAlert('receta', 'editada')
+          this.editMode = false
+          this.formRecipe.disable()
+        }, error => {
+          this.alertService.errorAlert('receta')
+        })
+      }
+    } else {
       this.alertService.errorAlert('receta')
-    })
+    }
   }
 
   submitForm() {

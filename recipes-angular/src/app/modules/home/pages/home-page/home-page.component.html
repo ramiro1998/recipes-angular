@@ -1,37 +1,17 @@
 <div class="main-container">
     <div class="container-new-button">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#recipeModal">
+        <button (click)="goIndividualRecipe()" type="button" class="btn btn-primary">
             Nueva Receta
         </button>
+        <app-search-bar (searchItem)="searchRecipes($event)"></app-search-bar>
     </div>
 
     <div class="recipes-container" [ngClass]="{'recipes-container-2': recipes.length > 3}">
-        <div class="recipe" *ngFor="let recipe of recipes">
+        <div class="recipe"
+            *ngFor="let recipe of recipes | paginate: { itemsPerPage: 2, currentPage: p } | lengthDescription">
             <app-card-recipe [recipe]="recipe"></app-card-recipe>
         </div>
     </div>
 </div>
 
-
-<!-- Modal -->
-<div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="recipeModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="recipe-form" [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="form-container">
-                    <input type="text" placeholder="Nombre" formControlName="name">
-                    <textarea placeholder="Descipción" formControlName="description"></textarea>
-                    <input type="text" placeholder="URL imagen" formControlName="imagePath">
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+<pagination-controls (pageChange)="p = $event" previousLabel="Atrás" nextLabel="Siguiente"></pagination-controls>

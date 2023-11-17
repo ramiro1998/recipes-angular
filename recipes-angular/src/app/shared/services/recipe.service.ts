@@ -15,7 +15,7 @@ export class RecipeService {
 
 
   getAllRecips(): Observable<Recipe[]> {
-    return this.http.get(`${this.URL}/api/recipes/get?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NTU0ZGE1YWY3NmJjZjcyYWUxZTNmMjEiLCJpYXQiOjE3MDAxMzg2NzgsImV4cCI6MTcwMDE1MzA3OH0.jlo0MfNvHZQEn6hQSrdVMebgF0MLR7oZKiUMOEpiKUs`)
+    return this.http.get(`${this.URL}/api/recipes/get?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NTU0ZGE1YWY3NmJjZjcyYWUxZTNmMjEiLCJpYXQiOjE3MDAyMzIwMTIsImV4cCI6MTcwMDI0NjQxMn0.pHihBfamyRUzfSYMzhJ4H56mMcJXuXKB4-1P0o-rRok`)
       .pipe(
         map((recipes: any) => {
           return recipes
@@ -28,10 +28,9 @@ export class RecipeService {
   }
 
   newRecipe(recipe: Recipe): Observable<Recipe> {
-    return this.http.post(`${this.URL}/api/recipes/add?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NTU0ZGE1YWY3NmJjZjcyYWUxZTNmMjEiLCJpYXQiOjE3MDAxNDUxOTgsImV4cCI6MTcwMDE1OTU5OH0.D-y5f2UNDvNOSaCEml8ZVqOqm-8VdsdHxERphHIvw4s`, recipe)
+    return this.http.post(`${this.URL}/api/recipes/add?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NTU0ZGE1YWY3NmJjZjcyYWUxZTNmMjEiLCJpYXQiOjE3MDAyMzIwMTIsImV4cCI6MTcwMDI0NjQxMn0.pHihBfamyRUzfSYMzhJ4H56mMcJXuXKB4-1P0o-rRok`, recipe)
       .pipe(
         map((recipe: any) => {
-          console.log('recipe service', recipe)
           return recipe
         }),
         catchError((error: any) => {
@@ -42,13 +41,26 @@ export class RecipeService {
   }
 
   editRecipe(recipe: Recipe, id: string): Observable<Recipe> {
-    return this.http.put(`${this.URL}/api/recipes/edit/${id}?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NTU0ZGE1YWY3NmJjZjcyYWUxZTNmMjEiLCJpYXQiOjE3MDAxNDUxOTgsImV4cCI6MTcwMDE1OTU5OH0.D-y5f2UNDvNOSaCEml8ZVqOqm-8VdsdHxERphHIvw4s`, recipe)
+    return this.http.put(`${this.URL}/api/recipes/edit/${id}?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NTU0ZGE1YWY3NmJjZjcyYWUxZTNmMjEiLCJpYXQiOjE3MDAyMzIwMTIsImV4cCI6MTcwMDI0NjQxMn0.pHihBfamyRUzfSYMzhJ4H56mMcJXuXKB4-1P0o-rRok`, recipe)
       .pipe(
         map((recipe: any) => {
           return recipe
         }),
         catchError((error: any) => {
-          console.log('Error creating recipe:', error);
+          console.log('Error editing recipe:', error);
+          return throwError(error);
+        })
+      )
+  }
+
+  deleteRecipe(id: string): Observable<Recipe> {
+    return this.http.delete(`${this.URL}/api/recipes/delete/${id}?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NTU0ZGE1YWY3NmJjZjcyYWUxZTNmMjEiLCJpYXQiOjE3MDAyMzIwMTIsImV4cCI6MTcwMDI0NjQxMn0.pHihBfamyRUzfSYMzhJ4H56mMcJXuXKB4-1P0o-rRok`)
+      .pipe(
+        map((recipe: any) => {
+          return recipe
+        }),
+        catchError((error: any) => {
+          console.log('Error deleting recipe:', error);
           return throwError(error);
         })
       )
