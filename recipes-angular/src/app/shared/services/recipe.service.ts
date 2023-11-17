@@ -12,10 +12,10 @@ export class RecipeService {
 
   private URL: string = environment.api
 
-  constructor(private http: HttpClient, private cookie:CookieService) { }
+  constructor(private http: HttpClient, private cookie: CookieService) { }
 
   // token:string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NTU0ZGE1YWY3NmJjZjcyYWUxZTNmMjEiLCJpYXQiOjE3MDAxNTUzMDEsImV4cCI6MTcwMDE2OTcwMX0.qtc4LHWp3uR_z_J1WFMZPoQ0Il1mBLSwKcWkH4apv1A";
-  token:string = this.cookie.get('recipesToken');
+  token: string = this.cookie.get('recipesToken');
 
   getAllRecips(): Observable<Recipe[]> {
     return this.http.get(`${this.URL}/api/recipes/get?auth=${this.token}`)
@@ -67,6 +67,28 @@ export class RecipeService {
           return throwError(error);
         })
       )
+  }
+
+  likeSong(recipe: Recipe): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      let likedSongs: any[] = [];
+      if (localStorage.getItem('likedSongs')) {
+        likedSongs = JSON.parse(localStorage.getItem('likedSongs') || '[]');
+        const index = likedSongs.findIndex((likedSong: any) => likedSong === recipe._id);
+        if (index !== -1) {
+          likedSongs.splice(index, 1);
+          resolve(false);
+        } else {
+          likedSongs.push(recipe._id);
+          resolve(true);
+        }
+        localStorage.setItem('likedSongs', JSON.stringify(likedSongs));
+      } else {
+        likedSongs.push(recipe._id);
+        localStorage.setItem('likedSongs', JSON.stringify(likedSongs));
+        resolve(true);
+      }
+    });
   }
 
 }

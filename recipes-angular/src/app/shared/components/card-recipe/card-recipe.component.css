@@ -23,6 +23,12 @@
     color: black;
 }
 
+.container-like {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
 @media (max-width: 350px) {
     .card {
         width: 80vw;
