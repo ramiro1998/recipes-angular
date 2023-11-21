@@ -10,17 +10,26 @@
   margin-left: 2.5rem;
 }
 
-.container-favorites{
+.container-favorites {
   margin-top: 5px;
   display: flex;
   gap: 5px;
   margin-left: 40px;
   height: 30px;
   max-width: 8%;
-  background-color: yellow;
+  background-color: #f5f5f5;
   cursor: pointer;
   align-items: center;
+  justify-content: center;
   border-radius: 5px;
+  color: var(--color-3);
+  transition: all 200ms;
+}
+
+.container-favorites.selected {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #c723ba;
+  color: #f5f5f5;
 }
 
 .recipes-container {

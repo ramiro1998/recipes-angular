@@ -15,18 +15,17 @@ export class CardRecipeComponent implements OnInit {
   constructor(private route: Router, private recipeService: RecipeService) { }
 
   ngOnInit(): void {
-    this.checkLikedSongs()
+    this.checkLikedRecipes()
   }
 
-  checkLikedSongs() {
-    const likedSongs = JSON.parse(localStorage.getItem('likedSongs') || '[]');
-    const index = likedSongs.findIndex((likedSong: any) => likedSong === this.recipe._id);
+  checkLikedRecipes() {
+    const likedRecipes = JSON.parse(localStorage.getItem('likedRecipes') || '[]');
+    const index = likedRecipes.findIndex((likedRecipe: any) => likedRecipe === this.recipe._id);
     if (index !== -1) {
       this.isLiked = true
     } else {
       this.isLiked = false
     }
-
   }
 
   goIndividualRecipe(recipe: Recipe) {
@@ -34,7 +33,7 @@ export class CardRecipeComponent implements OnInit {
   }
 
   async likeRecipe(recipe: Recipe) {
-    await this.recipeService.likeSong(recipe);
-    this.checkLikedSongs();
+    await this.recipeService.likeRecipe(recipe);
+    this.checkLikedRecipes();
   }
 }

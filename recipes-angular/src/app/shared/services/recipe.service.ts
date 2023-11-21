@@ -69,23 +69,23 @@ export class RecipeService {
       )
   }
 
-  likeSong(recipe: Recipe): Promise<boolean> {
+  likeRecipe(recipe: Recipe): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      let likedSongs: any[] = [];
-      if (localStorage.getItem('likedSongs')) {
-        likedSongs = JSON.parse(localStorage.getItem('likedSongs') || '[]');
-        const index = likedSongs.findIndex((likedSong: any) => likedSong === recipe._id);
+      let likedRecipes: any[] = [];
+      if (localStorage.getItem('likedRecipes')) {
+        likedRecipes = JSON.parse(localStorage.getItem('likedRecipes') || '[]');
+        const index = likedRecipes.findIndex((likedRecipe: any) => likedRecipe === recipe._id);
         if (index !== -1) {
-          likedSongs.splice(index, 1);
+          likedRecipes.splice(index, 1);
           resolve(false);
         } else {
-          likedSongs.push(recipe._id);
+          likedRecipes.push(recipe._id);
           resolve(true);
         }
-        localStorage.setItem('likedSongs', JSON.stringify(likedSongs));
+        localStorage.setItem('likedRecipes', JSON.stringify(likedRecipes));
       } else {
-        likedSongs.push(recipe._id);
-        localStorage.setItem('likedSongs', JSON.stringify(likedSongs));
+        likedRecipes.push(recipe._id);
+        localStorage.setItem('likedRecipes', JSON.stringify(likedRecipes));
         resolve(true);
       }
     });

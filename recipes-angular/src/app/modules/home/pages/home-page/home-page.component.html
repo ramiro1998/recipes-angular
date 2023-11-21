@@ -6,8 +6,8 @@
         <app-search-bar (searchItem)="searchRecipes($event)"></app-search-bar>
     </div>
 
-    <div class="container-favorites">
-        <a style="margin-left: 7px;"><i class="fad fa-book-heart"></i></a>
+    <div [ngClass]="{'selected': isFavoritesSelected}" class="container-favorites" (click)="favoritesRecipes()">
+        <a><i class="fad fa-book-heart"></i></a>
         <div>Favoritos</div>
     </div>
 

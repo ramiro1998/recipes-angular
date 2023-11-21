@@ -18,6 +18,7 @@ export class HomePageComponent implements OnInit {
   showModal: boolean = false
   recipeForm!: FormGroup
   p: number = 1
+  isFavoritesSelected = false;
 
   constructor(private route: Router, private fb: FormBuilder, private recipeSercvice: RecipeService, private alertService: AlertsService) { }
 
@@ -47,6 +48,21 @@ export class HomePageComponent implements OnInit {
       this.recipes = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
       Swal.close()
     })
+  }
+
+  favoritesRecipes() {
+    this.isFavoritesSelected = !this.isFavoritesSelected;
+    this.checkLikedRecipes();
+  }
+
+  checkLikedRecipes() {
+    if (this.isFavoritesSelected) {
+      const likedRecipes = JSON.parse(localStorage.getItem('likedRecipes') ?? '[]');
+      this.recipes = this.recipes.filter(recipe => likedRecipes.includes(recipe._id))
+    } else {
+      this.getRecipes()
+    }
+
   }
 
 }

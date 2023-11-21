@@ -61,3 +61,7 @@ body {
 .error-label {
     color: red;
 }
+
+.ngx-pagination .current{
+    background-color: #4c9d31 !important;
+}
