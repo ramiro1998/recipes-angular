@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CardRecipeComponent } from './card-recipe.component';
 
 describe('CardRecipeComponent', () => {
@@ -8,7 +8,8 @@ describe('CardRecipeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CardRecipeComponent]
+      declarations: [CardRecipeComponent],
+      imports: [HttpClientTestingModule],
     });
     fixture = TestBed.createComponent(CardRecipeComponent);
     component = fixture.componentInstance;
