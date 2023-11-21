@@ -23,8 +23,8 @@
                 class="container-ingredient input-custom-width">
                 <input type="text" class="input-ingredient input-name-amount" formControlName="name"
                     placeholder="Nombre">
-                <input type="text" class="input-ingredient input-name-amount" formControlName="amount"
-                    placeholder="Cantidad" type="number">
+                <input type="number" class="input-ingredient input-name-amount" formControlName="amount"
+                    placeholder="Cantidad">
                 <a *ngIf="editMode" class="deleteRecord" (click)="removeIngredient(i, ingredient)">
                     <i class="fas fa-trash" style="color: rgb(246, 93, 93);"></i>
                 </a>
