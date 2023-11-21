@@ -8,19 +8,8 @@
                 <input class="quantity" placeholder="Cantidad" type="text">
                 <button>Agregar</button>
             </div>
-            <ul class="list">
-                <li>Tomates: 3 kg</li>
-                <li>Papas: 2 kg</li>
-                <li>Asado: 4 kg</li>
-                <li>Chimichurri</li>
-                <li>Tomates: 3 kg</li>
-                <li>Papas: 2 kg</li>
-                <li>Asado: 4 kg</li>
-                <li>Chimichurri</li>
-                <li>Tomates: 3 kg</li>
-                <li>Papas: 2 kg</li>
-                <li>Asado: 4 kg</li>
-                <li>Chimichurri</li>
+            <ul *ngFor="let item of ingredientes" class="list">
+                <li>{{item.name}} - {{item.amount}}</li>
             </ul>
         </div>
         <img class="grocery" src="../../../../../assets/grocery.png" alt="">
