@@ -56,7 +56,7 @@ export class IndividualRecipeComponent implements OnInit {
         this.recipe.ingredients.forEach((ingredient: any) => {
           const ingredientGroup = this.fb.group({
             name: [ingredient.name, Validators.required],
-            amount: [ingredient.amount, Validators.required],
+            amount: [ingredient.amount, [Validators.required, Validators.pattern('^[1-9]\\d*$')]],
           });
           ingredientsFormArray.push(ingredientGroup);
         });
@@ -100,7 +100,7 @@ export class IndividualRecipeComponent implements OnInit {
     const ingredientsFormArray = this.getForm();
     const newIngredientGroup = this.fb.group({
       name: ['', Validators.required],
-      amount: ['', Validators.required],
+      amount: ['', [Validators.required, Validators.pattern('^[1-9]\\d*$')]],
     });
     ingredientsFormArray.push(newIngredientGroup);
   }

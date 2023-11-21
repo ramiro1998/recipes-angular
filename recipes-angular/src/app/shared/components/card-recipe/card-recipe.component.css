@@ -27,8 +27,8 @@
 
 .container-like {
     position: absolute;
-    right: 20px;
-    top: 10px;
+    bottom: 15px;
+    right: 22px;
 }
 
 .btn-card {
