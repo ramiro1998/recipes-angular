@@ -18,6 +18,11 @@ export class IngredientsPageComponent implements OnInit {
       console.log(recipes);
       recipes.map((recipe: Recipe) => {
         recipe.ingredients.map((ingredient: any) => {
+          const existingItem = this.ingredientes.find((item) => item.name === ingredient.name);
+          if (existingItem) {
+            existingItem.amount += ingredient.amount;
+            return;
+          }
           this.ingredientes.push(ingredient);
         });
       })
