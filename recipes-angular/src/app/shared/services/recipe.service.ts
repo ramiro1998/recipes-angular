@@ -57,7 +57,7 @@ export class RecipeService {
   }
 
   deleteRecipe(id: string): Observable<Recipe> {
-    return this.http.delete(`${this.URL}/api/recipes/delete/${id}?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NTU0ZGE1YWY3NmJjZjcyYWUxZTNmMjEiLCJpYXQiOjE3MDAyMzIwMTIsImV4cCI6MTcwMDI0NjQxMn0.pHihBfamyRUzfSYMzhJ4H56mMcJXuXKB4-1P0o-rRok`)
+    return this.http.delete(`${this.URL}/api/recipes/delete/${id}?auth=${this.token}`)
       .pipe(
         map((recipe: any) => {
           return recipe

@@ -6,6 +6,11 @@
         <app-search-bar (searchItem)="searchRecipes($event)"></app-search-bar>
     </div>
 
+    <div class="container-favorites">
+        <a style="margin-left: 7px;"><i class="fad fa-book-heart"></i></a>
+        <div>Favoritos</div>
+    </div>
+
     <div class="recipes-container" [ngClass]="{'recipes-container-2': recipes.length > 3}">
         <div class="recipe"
             *ngFor="let recipe of recipes | paginate: { itemsPerPage: 2, currentPage: p } | lengthDescription">

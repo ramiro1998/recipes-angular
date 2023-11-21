@@ -10,6 +10,19 @@
   margin-left: 2.5rem;
 }
 
+.container-favorites{
+  margin-top: 5px;
+  display: flex;
+  gap: 5px;
+  margin-left: 40px;
+  height: 30px;
+  max-width: 8%;
+  background-color: yellow;
+  cursor: pointer;
+  align-items: center;
+  border-radius: 5px;
+}
+
 .recipes-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
