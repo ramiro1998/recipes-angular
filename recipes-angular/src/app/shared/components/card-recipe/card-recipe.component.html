@@ -1,15 +1,15 @@
-<div class="card">
+<div class="card w-100">
     <div>
         <img appBrokenImage [src]="recipe.imagePath" alt="recipe.name" class="card-img-top">
     </div>
     <div class="container-like" (click)="likeRecipe(recipe)" *ngIf="!isLiked">
-        <a class="hyperlink-icon"><i class="fal fa-heart" style="color:  #c723ba; font-size: 20px;"></i></a>
+        <a class="hyperlink-icon"><i class="fal fa-heart" style="color:  #c723ba;"></i></a>
     </div>
     <div class="container-like" (click)="likeRecipe(recipe)" *ngIf="isLiked">
-        <a class="hyperlink-icon"><i class="fas fa-heart" style="color: #c723ba; font-size: 20px;"></i></a>
+        <a class="hyperlink-icon"><i class="fas fa-heart" style="color: #c723ba;"></i></a>
     </div>
-    <div class="card-body">
-        <h5 class="card-title">{{ recipe.name }}</h5>
+    <div class="card-body text-center">
+        <h5 class="card-title ">{{ recipe.name }}</h5>
         <p class="card-text">{{ recipe.description }}</p>
         <button (click)="goIndividualRecipe(recipe)" class="btn-card">Ver receta</button>
     </div>

@@ -34,6 +34,22 @@ li:hover {
     right: 50px;
 }
 
+.hyperlink-icon {
+    color: var(--color-3);
+}
+
 .exit-container:hover {
     opacity: 0.8;
+}
+
+@media only screen and (max-width: 420px) {
+    .exit-container {
+        top: 0;
+        right: 0;
+        padding: 10px;
+    }
+
+    .hyperlink-icon {
+        font-size: 12px;
+    }
 }
