@@ -42,6 +42,13 @@ li:hover {
     opacity: 0.8;
 }
 
+.active-link {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-position: under;
+    text-underline-offset: 2px;
+}
+
 @media only screen and (max-width: 420px) {
     .exit-container {
         top: 0;
