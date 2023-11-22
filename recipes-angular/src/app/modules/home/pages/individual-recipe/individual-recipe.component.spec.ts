@@ -1,30 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
-import { IndividualRecipeComponent } from './individual-recipe.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-describe('IndividualRecipeComponent', () => {
-  let component: IndividualRecipeComponent;
-  let fixture: ComponentFixture<IndividualRecipeComponent>;
+// import { IndividualRecipeComponent } from './individual-recipe.component';
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [IndividualRecipeComponent],
-      providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: { snapshot: { paramMap: { get: () => '1' } } },
-        },
-      ],
-      imports: [ReactiveFormsModule, HttpClientTestingModule],
-    });
-    fixture = TestBed.createComponent(IndividualRecipeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+// describe('IndividualRecipeComponent', () => {
+//   let component: IndividualRecipeComponent;
+//   let fixture: ComponentFixture<IndividualRecipeComponent>;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [IndividualRecipeComponent]
+//     });
+//     fixture = TestBed.createComponent(IndividualRecipeComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
+
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

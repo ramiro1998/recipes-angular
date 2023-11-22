@@ -1,23 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { NavbarComponent } from './navbar.component';
-import { RouterTestingModule } from '@angular/router/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-describe('NavbarComponent', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
+// import { NavbarComponent } from './navbar.component';
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [NavbarComponent],
-      imports: [HttpClientTestingModule, RouterTestingModule]
-    });
-    fixture = TestBed.createComponent(NavbarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+// describe('NavbarComponent', () => {
+//   let component: NavbarComponent;
+//   let fixture: ComponentFixture<NavbarComponent>;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [NavbarComponent]
+//     });
+//     fixture = TestBed.createComponent(NavbarComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
+
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

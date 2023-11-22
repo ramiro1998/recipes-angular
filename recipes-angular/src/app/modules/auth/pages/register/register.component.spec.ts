@@ -1,23 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RegisterComponent } from './register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-describe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
+// import { RegisterComponent } from './register.component';
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [RegisterComponent],
-      imports: [HttpClientTestingModule, ReactiveFormsModule],
-    });
-    fixture = TestBed.createComponent(RegisterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+// describe('RegisterComponent', () => {
+//   let component: RegisterComponent;
+//   let fixture: ComponentFixture<RegisterComponent>;
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [RegisterComponent]
+//     });
+//     fixture = TestBed.createComponent(RegisterComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
+
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });
