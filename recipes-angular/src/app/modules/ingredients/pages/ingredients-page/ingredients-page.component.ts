@@ -15,10 +15,10 @@ export class IngredientsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipes.getAllRecips().subscribe((recipes: any) => {
-      console.log(recipes);
+      // console.log(recipes);
       recipes.map((recipe: Recipe) => {
         recipe.ingredients.map((ingredient: any) => {
-          console.log(typeof(ingredient.amount))
+          // console.log(typeof(ingredient.amount))
           const existingItem = this.ingredientes.find((item) => item.name === ingredient.name);
           if (existingItem) {
             existingItem.amount = Number(existingItem.amount) + Number(ingredient.amount);
