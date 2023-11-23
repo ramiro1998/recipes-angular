@@ -13,7 +13,7 @@
 
     <div class="recipes-container" style="width: 100%;">
         <div class=""
-            *ngFor="let recipe of recipes | paginate: { itemsPerPage: 4, currentPage: 1 } | lengthDescription">
+            *ngFor="let recipe of recipes | paginate: { itemsPerPage: 4, currentPage: p } | lengthDescription">
             <app-card-recipe [recipe]="recipe"></app-card-recipe>
         </div>
     </div>
