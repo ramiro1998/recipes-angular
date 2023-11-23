@@ -1,10 +1,16 @@
 <nav class="nav-container">
     <ul class="link-list">
         <li [routerLink]="item.router" *ngFor="let item of navMenu">
-            <span>{{item.name}}</span>
+            <ng-container *ngIf="item.name === 'Home'; else noHome">
+                <span (click)="resetFavorites()">{{item.name}}</span>
+            </ng-container>
+            <ng-template #noHome>
+                <span>{{item.name}}</span>
+            </ng-template>
         </li>
     </ul>
     <div class="exit-container">
-        <a class="hyperlink-icon" (click)="logout()"><i class="fas fa-sign-out" style="color: black; font-size: 20px;"></i></a>
+        <a class="hyperlink-icon" (click)="logout()"><i class="fas fa-sign-out"
+                style="color: black; font-size: 20px;"></i></a>
     </div>
 </nav>

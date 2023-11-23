@@ -82,11 +82,10 @@ export class IndividualRecipeComponent implements OnInit {
   deleteRecipe(recipe: Recipe) {
     this.alertService.deleteAlert(recipe.name, 'receta').subscribe((confirmed) => {
       if (confirmed) {
-        this.recipeService.deleteRecipe(this.route.snapshot.paramMap.get('id') as string).subscribe(() => {
-          this.alertService.createDeleteAlert('receta', 'eliminada')
-          setTimeout(() => {
-            this.router.navigate([`/`])
-          }, 1000);
+        this.recipeService.deleteRecipe(this.route.snapshot.paramMap.get('id') as string).subscribe((result) => {
+          this.alertService.createDeleteAlert('receta', 'eliminada').subscribe(() => {
+            this.router.navigate(['/']);
+          });
         }, error => this.alertService.errorAlert(recipe.name))
       }
     });
@@ -144,17 +143,16 @@ export class IndividualRecipeComponent implements OnInit {
     return '';
   }
 
-  saveRecipe() {
+  submitForm() {
     this.formsubmitted = true
     if (this.formRecipe.valid) {
       if (this.newRecipeBoolean) {
         const recipeId = this.route.snapshot.paramMap.get('id');
         const recipeData = this.formRecipe.value;
         this.recipeService.newRecipe(recipeData).subscribe((recipeCreated: Recipe) => {
-          this.alertService.createDeleteAlert('receta', 'creada')
-          setTimeout(() => {
-            this.router.navigate([`/`])
-          }, 1000);
+          this.alertService.createDeleteAlert('receta', 'creada').subscribe(() => {
+            this.router.navigate(['/']);
+          });
         }, error => {
           this.alertService.errorAlert('receta')
         })
@@ -174,7 +172,4 @@ export class IndividualRecipeComponent implements OnInit {
     }
   }
 
-  submitForm() {
-
-  }
 }

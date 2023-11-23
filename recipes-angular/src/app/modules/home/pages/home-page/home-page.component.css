@@ -16,7 +16,7 @@
   gap: 5px;
   margin-left: 40px;
   height: 30px;
-  max-width: 8%;
+  width: 100px;
   background-color: #f5f5f5;
   cursor: pointer;
   align-items: center;
@@ -112,4 +112,9 @@
 
 .save-btn {
   background-color: var(--color-1);
+}
+
+.text-nodata{
+  margin-left: 2.5rem;
+  font-size: 20px;
 }

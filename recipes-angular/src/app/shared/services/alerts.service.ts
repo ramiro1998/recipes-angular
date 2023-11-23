@@ -27,7 +27,7 @@ export class AlertsService {
 
   deleteAlert(name: string, object: string): Observable<boolean> {
     const subject = new Subject<boolean>();
-  
+
     Swal.fire({
       title: `¿Está seguro que quiere eliminar ${object}: ${name}?`,
       showDenyButton: true,
@@ -45,15 +45,19 @@ export class AlertsService {
       }
       subject.complete();
     });
-  
+
     return subject.asObservable();
   }
 
-
-  createDeleteAlert(name: string, state: string) {
-    Swal.fire({
-      title: `${name} ${state}`,
-      icon: 'success'
+  createDeleteAlert(name: string, state: string): Observable<boolean> {
+    return new Observable<boolean>((observer) => {
+      Swal.fire({
+        title: `${name} ${state}`,
+        icon: 'success'
+      }).then((result) => {
+        observer.next(result.isConfirmed);
+        observer.complete();
+      });
     });
   }
 

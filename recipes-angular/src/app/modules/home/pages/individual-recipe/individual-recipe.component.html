@@ -37,7 +37,7 @@
             <button *ngIf="!editMode && !newRecipeBoolean" class="recipe-btn edit-btn" role="button"
                 (click)="editRecipe(recipe)">Editar</button>
             <button *ngIf="editMode || newRecipeBoolean" class="recipe-btn save-btn" role="button"
-                (click)="saveRecipe()">Guardar</button>
+                type="submit">Guardar</button>
             <button *ngIf="editMode" class="recipe-btn delete-btn" role="button"
                 (click)="cancelSave()">Cancelar</button>
             <button *ngIf="!editMode && !newRecipeBoolean" class="recipe-btn delete-btn" role="button"

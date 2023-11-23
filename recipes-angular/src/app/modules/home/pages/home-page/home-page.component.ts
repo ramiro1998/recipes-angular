@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Recipe } from 'src/app/core/models/recipe.model';
 import { AlertsService } from 'src/app/shared/services/alerts.service';
+import { FavoritesService } from 'src/app/shared/services/favorites.service';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 import Swal from 'sweetalert2';
 
@@ -14,13 +15,11 @@ import Swal from 'sweetalert2';
 
 export class HomePageComponent implements OnInit {
 
-  recipes: Recipe[] = []/* [{ _id: '1', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '2', name: 'receta2', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '3', name: 'receta3', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '4', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '5', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '6', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '7', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }] */
   showModal: boolean = false
   recipeForm!: FormGroup
   p: number = 1
-  isFavoritesSelected = false;
 
-  constructor(private route: Router, private fb: FormBuilder, private recipeSercvice: RecipeService, private alertService: AlertsService) { }
+  constructor(private route: Router, private fb: FormBuilder, public recipeService: RecipeService, private alertService: AlertsService, public favoriteService: FavoritesService) { }
 
   ngOnInit(): void {
     this.recipeForm = this.fb.group({
@@ -30,11 +29,14 @@ export class HomePageComponent implements OnInit {
     });
     this.alertService.loading()
     this.getRecipes()
+    this.favoriteService.getFavoritesSubject().subscribe((value: boolean) => {
+      this.checkLikedRecipes()
+    });
   }
 
   getRecipes() {
-    this.recipeSercvice.getAllRecips().subscribe((recipes: Recipe[]) => {
-      this.recipes = recipes
+    this.recipeService.getAllRecips().subscribe((recipes: Recipe[]) => {
+      this.recipeService.setRecipes(recipes)
       Swal.close()
     })
   }
@@ -44,21 +46,33 @@ export class HomePageComponent implements OnInit {
   }
 
   searchRecipes(value: any) {
-    this.recipeSercvice.getAllRecips().subscribe((recipes: Recipe[]) => {
-      this.recipes = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
-      Swal.close()
-    })
+    if (!this.favoriteService.getFavorites()) {
+      this.recipeService.getAllRecips().subscribe((recipes: Recipe[]) => {
+        const recipeToSet = recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
+        this.recipeService.setRecipes(recipeToSet)
+        Swal.close()
+      })
+    } else {
+      this.recipeService.getAllRecips().subscribe((recipes: Recipe[]) => {
+        const likedRecipes = JSON.parse(localStorage.getItem('likedRecipes') ?? '[]');
+        const recipeToSet = recipes.filter(recipe => likedRecipes.includes(recipe._id) && recipe.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
+        this.recipeService.setRecipes(recipeToSet)
+      })
+    }
   }
 
   favoritesRecipes() {
-    this.isFavoritesSelected = !this.isFavoritesSelected;
+    this.favoriteService.toggleFavorites()
     this.checkLikedRecipes();
+    this.p = 1
   }
 
   checkLikedRecipes() {
-    if (this.isFavoritesSelected) {
+    if (this.favoriteService.getFavorites()) {
       const likedRecipes = JSON.parse(localStorage.getItem('likedRecipes') ?? '[]');
-      this.recipes = this.recipes.filter(recipe => likedRecipes.includes(recipe._id))
+      let recipes = this.recipeService.getRecipes()
+      recipes = recipes.filter(recipe => likedRecipes.includes(recipe._id))
+      this.recipeService.setRecipes(recipes)
     } else {
       this.getRecipes()
     }

@@ -11,6 +11,7 @@ import { environment } from 'src/app/environment/environment';
 export class RecipeService {
 
   private URL: string = environment.api
+  recipes!: Recipe[]
 
   constructor(private http: HttpClient, private cookie: CookieService) { }
 
@@ -89,6 +90,14 @@ export class RecipeService {
         resolve(true);
       }
     });
+  }
+
+  getRecipes() {
+    return this.recipes
+  }
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes
   }
 
 }
