@@ -13,7 +13,7 @@
             <label class="error-label">{{getErrorMessage(formRecipe.get('description'))}}</label>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control input-custom-width" id="imagePath" name="imagePath"
+            <input type="text" class="form-control input-custom-width" id="imagePath" placeholder="Image URL" name="imagePath"
                 formControlName="imagePath" (change)="changeURLimg(formRecipe.get('imagePath')?.value)">
             <label class="error-label">{{getErrorMessage(formRecipe.get('imagePath'))}}</label>
         </div>
