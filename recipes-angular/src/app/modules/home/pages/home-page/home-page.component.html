@@ -13,7 +13,7 @@
     </div>
 
     <div *ngIf="recipeService.getRecipes()" class="recipes-container">
-        <div class="recipe"
+        <div class=""
             *ngFor="let recipe of recipeService.getRecipes() | paginate: { itemsPerPage: 5, currentPage: p } | lengthDescription">
             <app-card-recipe [recipe]="recipe"></app-card-recipe>
         </div>

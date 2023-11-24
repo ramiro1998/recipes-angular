@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HomePageComponent } from './home-page.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -72,9 +72,9 @@ describe('HomePageComponent', () => {
     // Arrange
     const searchValue = 'test';
     const mockRecipes: Recipe[] = [
-      { _id: '1', name: 'Test Recipe 1', description: 'Description 1', imagePath: 'www.example.com/image1', ingredients: [] },
-      { _id: '2', name: 'Test Recipe 2', description: 'Description 2', imagePath: 'www.example.com/image2', ingredients: [] },
-      { _id: '3', name: 'Prueba Recipe 3', description: 'Description 3', imagePath: 'www.example.com/image3', ingredients: [] },
+      { _id: '1', name: 'Test Recipe 1', description: 'Description 1', imagePath: 'www.example.com/image1', ingredients: [{ name: 'Ingredient 1', amount: 15 }] },
+      { _id: '2', name: 'Test Recipe 2', description: 'Description 2', imagePath: 'www.example.com/image2', ingredients: [{ name: 'Ingredient 2', amount: 15 }] },
+      { _id: '3', name: 'Prueba Recipe 3', description: 'Description 3', imagePath: 'www.example.com/image3', ingredients: [{ name: 'Ingredient 3', amount: 15 }] },
     ];
 
     recipeServiceSpy.getAllRecips.and.returnValue(of(mockRecipes));
@@ -92,9 +92,9 @@ describe('HomePageComponent', () => {
     // Arrange
     const searchValue = 'nonexistent';
     const mockRecipes: Recipe[] = [
-      { _id: '1', name: 'Test Recipe 1', description: 'Description 1', imagePath: 'www.example.com/image1', ingredients: [] },
-      { _id: '2', name: 'Test Recipe 2', description: 'Description 2', imagePath: 'www.example.com/image2', ingredients: [] },
-      { _id: '3', name: 'Prueba Recipe 3', description: 'Description 3', imagePath: 'www.example.com/image3', ingredients: [] },
+      { _id: '1', name: 'Test Recipe 1', description: 'Description 1', imagePath: 'www.example.com/image1', ingredients: [{ name: 'Ingredient 4', amount: 15 }] },
+      { _id: '2', name: 'Test Recipe 2', description: 'Description 2', imagePath: 'www.example.com/image2', ingredients: [{ name: 'Ingredient 5', amount: 15 }] },
+      { _id: '3', name: 'Prueba Recipe 3', description: 'Description 3', imagePath: 'www.example.com/image3', ingredients: [{ name: 'Ingredient 6', amount: 15 }] },
     ];
 
     recipeServiceSpy.getAllRecips.and.returnValue(of(mockRecipes));

@@ -15,7 +15,7 @@ export class IndividualRecipeComponent implements OnInit {
 
 
   recipes: Recipe[] = []/* [{ _id: '1', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '2', name: 'receta2', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '3', name: 'receta3', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '4', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '5', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '6', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '7', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }] */
-  recipe: Recipe = { _id: '', name: '', description: '', imagePath: '', ingredients: [] };
+  recipe: Recipe = { _id: '', name: '', description: '', imagePath: '', ingredients: [{name: '', amount: 0}] };
   formRecipe!: FormGroup
   editMode: boolean = false
   newRecipeBoolean: boolean = false

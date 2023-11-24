@@ -1,6 +1,7 @@
 <nav class="nav-container">
     <ul class="link-list">
-        <li [routerLink]="item.router" *ngFor="let item of navMenu">
+        <li [routerLinkActive]="'active-link'" [routerLinkActiveOptions]="{exact: true}" [routerLink]="item.router"
+            *ngFor="let item of navMenu">
             <ng-container *ngIf="item.name === 'Home'; else noHome">
                 <span (click)="resetFavorites()">{{item.name}}</span>
             </ng-container>

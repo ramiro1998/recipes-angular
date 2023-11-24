@@ -13,7 +13,7 @@
             <label class="error-label">{{getErrorMessage(formRecipe.get('description'))}}</label>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control input-custom-width" id="imagePath" name="imagePath"
+            <input type="text" class="form-control input-custom-width" id="imagePath" placeholder="Image URL" name="imagePath"
                 formControlName="imagePath" (change)="changeURLimg(formRecipe.get('imagePath')?.value)">
             <label class="error-label">{{getErrorMessage(formRecipe.get('imagePath'))}}</label>
         </div>
@@ -23,8 +23,8 @@
                 class="container-ingredient input-custom-width">
                 <input type="text" class="input-ingredient input-name-amount" formControlName="name"
                     placeholder="Nombre">
-                <input type="text" class="input-ingredient input-name-amount" formControlName="amount"
-                    placeholder="Cantidad" type="number">
+                <input type="number" class="input-ingredient input-name-amount" formControlName="amount"
+                    placeholder="Cantidad">
                 <a *ngIf="editMode" class="deleteRecord" (click)="removeIngredient(i, ingredient)">
                     <i class="fas fa-trash" style="color: rgb(246, 93, 93);"></i>
                 </a>
