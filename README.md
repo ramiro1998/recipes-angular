@@ -26,12 +26,12 @@ To set up the Recipe Management System on your local machine, follow these steps
 ## Developers
 Meet the contributors who have contributed to the project:
 
-##Alex Martín
+## Alex Martin
 
 GitHub: https://github.com/AlexEMartin
 LinkedIn: https://www.linkedin.com/in/alexeumartin/
 
-##Ramiro Redona
+## Ramiro Redona
 
 GitHub: https://github.com/ramiro1998
 LinkedIn: https://www.linkedin.com/in/ramiroredona/
