@@ -14,8 +14,8 @@ import Swal from 'sweetalert2';
 export class IndividualRecipeComponent implements OnInit {
 
 
-  recipes: Recipe[] = []/* [{ _id: '1', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '2', name: 'receta2', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '3', name: 'receta3', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '4', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '5', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '6', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }, { _id: '7', name: 'receta1', description: 'descripcion', imagePath: 'wwww.google.com' }] */
-  recipe: Recipe = { _id: '', name: '', description: '', imagePath: '', ingredients: [{name: '', amount: 0}] };
+  recipes: Recipe[] = []
+  recipe: Recipe = { _id: '', name: '', description: '', imagePath: '', ingredients: [{ name: '', amount: 0 }] };
   formRecipe!: FormGroup
   editMode: boolean = false
   newRecipeBoolean: boolean = false
@@ -160,9 +160,10 @@ export class IndividualRecipeComponent implements OnInit {
         const recipeId = this.route.snapshot.paramMap.get('id');
         const recipeData = this.formRecipe.value;
         this.recipeService.editRecipe(recipeData, recipeId as string).subscribe((recipeEdited: Recipe) => {
-          this.alertService.createDeleteAlert('receta', 'editada')
-          this.editMode = false
-          this.formRecipe.disable()
+          this.alertService.createDeleteAlert('receta', 'editada').subscribe(() => {
+            this.editMode = false
+            this.formRecipe.disable()
+          });
         }, error => {
           this.alertService.errorAlert('receta')
         })
