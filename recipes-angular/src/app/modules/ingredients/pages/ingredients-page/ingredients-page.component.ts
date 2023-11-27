@@ -25,6 +25,7 @@ export class IngredientsPageComponent implements OnInit {
             return;
           }
           this.ingredientes.push(ingredient);
+          this.ingredientes.sort((a, b) => a.name.localeCompare(b.name));
         });
       })
     });
