@@ -1,4 +1,5 @@
 export const environment = {
     production: false,
-    api: 'https://backend-recipes-bootcamps-tribe.onrender.com'
+    api: 'https://recipes-alex-api.onrender.com'
+    // api: 'https://backend-recipes-bootcamps-tribe.onrender.com'
 };
