@@ -19,16 +19,16 @@ export class RecipeService {
   token: string = this.cookie.get('recipesToken');
 
   getAllRecips(): Observable<Recipe[]> {
-    return this.http.get(`${this.URL}/api/recipes/get?auth=${this.token}`)
-      .pipe(
-        map((recipes: any) => {
-          return recipes
-        }),
-        catchError((error: any) => {
-          console.log('Error getting recipes:', error);
-          return throwError(error);
-        })
-      )
+    this.token = this.cookie.get('recipesToken');
+    return this.http.get(`${this.URL}/api/recipes/get?auth=${this.token}`).pipe(
+      map((recipes: any) => {
+        return recipes;
+      }),
+      catchError((error: any) => {
+        console.log('Error getting recipes:', error);
+        return throwError(error);
+      })
+    );
   }
 
   newRecipe(recipe: Recipe): Observable<Recipe> {
