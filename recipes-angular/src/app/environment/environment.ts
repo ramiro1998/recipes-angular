@@ -1,4 +1,5 @@
 export const environment = {
     production: false,
-    api: 'https://backend-recipes-bootcamps-tribe.onrender.com'
+    api: 'https://recipe-node-render.onrender.com'
+    // api: 'http://localhost:3001'
 };

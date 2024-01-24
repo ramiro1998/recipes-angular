@@ -3,10 +3,12 @@
         <img appBrokenImage [src]="recipe.imagePath" alt="recipe.name" class="card-img-top">
     </div>
     <div class="container-like" (click)="likeRecipe(recipe)" *ngIf="!isLiked">
-        <a class="hyperlink-icon"><i class="fal fa-heart" style="color:  #c723ba;"></i></a>
+        <!-- <a class="hyperlink-icon"><i class="fal fa-heart" style="color:  #c723ba;"></i></a> -->
+        <img src="assets/heart-regular.svg" style="height: 20px;">
     </div>
     <div class="container-like" (click)="likeRecipe(recipe)" *ngIf="isLiked">
-        <a class="hyperlink-icon"><i class="fas fa-heart" style="color: #c723ba;"></i></a>
+        <!-- <a class="hyperlink-icon"><i class="fas fa-heart" style="color: #c723ba;"></i></a> -->
+        <img src="assets/heart-solid-pink.svg" style="height: 20px;">
     </div>
     <div class="card-body text-center">
         <h5 class="card-title ">{{ recipe.name }}</h5>
